@@ -1,30 +1,4 @@
 import os
-#funções all e any
-"""
-l = [1,2,3,4,5,6]
-#funcao que retorna se todos sao pares
-
-def soh_pares(lista):
-    for i in lista:
-        if i % 2 != 0:
-            return False
-    return True
-
-# verifica se uma lista possui valor True
-print(([x for x in l if x % 2 == 0]))
-
-#verificar se uma lista possui string
-print(any([type(x) == str for x in l]))
-"""
-
-#verificar se todos sao int
-tab = [[' ', ' ', ' ', ' '],
-       [' ', ' ', ' ', ' '],
-       [' ', ' ', ' ', ' '],
-       [' ', ' ', ' ', ' ']]
-#verificar se todos sao int
-#print(all([type(x) == int for x in l]))
-
 #coluna
 def vence_coluna(col):
     if var_control_player % 2 == 0:
@@ -55,6 +29,7 @@ def vence_linha(row):
 
 def printa_tela():
     os.system("cls")
+    """
     print("    0   1   2   3")
     print("0:  " +tab[0][0] + " | " + tab[0][1] + " | " + tab[0][2] + " | " + tab[0][3])
     print("   ----------------")
@@ -65,19 +40,48 @@ def printa_tela():
     print("3:  " +tab[3][0] + " | " + tab[3][1] + " | " + tab[3][2] + " | " + tab[3][3])
     print()
     print()
+    """
+    out = '    '
+    for i in range(ordem):
+        out += (f"{i}   ")
+    out += ("\n") 
+    for i in range(ordem):
+        out += (f"{i}:  ")
+        for j in range(ordem):
+            out += (f"{tab[i][j]}")
+            if j == ordem - 1:
+                break
+            out += (f" | ")
+        out += ("\n   ")
+        count = 0
+        while True:
+            if i == ordem-1:
+                break
+            count += 1
+            if count > ordem:
+                break
+            out += (f"----")
+        out += ("\n")
+    out += ("\n\n")
+    print(out)
     
-max_jogadas = 0
 var_control_player = 0
+def ambiente():
+    global ordem
+    global tab
+    ordem = int(input("Qual a ordem do jogo da velha? "))
+    tab = [[' ' for i in range(ordem)] for j in range(ordem)]
+
+max_jogadas = 0
 def game():
     global var_control_player
-    global max_jogadas
     global tab
-    while max_jogadas < 16:
+    while max_jogadas != 16:
         printa_tela()
         print("Vez do/a jogador X") if var_control_player % 2 == 0 else print("Vez do/a jogador O")
         user_input_row = int(input("Informe a linha: "))
         user_input_col = int(input("Informe a coluna: "))
-        if (user_input_row > 3 or user_input_row < 0) and (user_input_col > 3 or user_input_col < 0):
+        if (user_input_row > ordem - 1 or user_input_row < 0) and (user_input_col > ordem - 1 or user_input_col < 0):
             print("Informe valores válidos.")
             continue
         if tab[user_input_row][user_input_col] != ' ':
@@ -93,22 +97,6 @@ def game():
             print("Jogador/a X venceu!") if var_control_player % 2 == 0 else print("Jogador/a O venceu!")
             exit()
         var_control_player += 1
-        max_jogadas += 1
     print("Deu velha!")
+ambiente()
 game()
-"""
-while True:
-    print("Vez do/a jogador X") if var_control_player % 2 == 0 else print("Vez do/a jogador O")
-    user_input_row = int(input("Informe a linha: "))
-    user_input_col = int(input("Informe a coluna: "))
-    if (user_input_row > 3 or user_input_row < 0) and (user_input_col > 3 or user_input_col < 0):
-        print("Informe valores válidos.")
-        continue
-    if tab[user_input_row][user_input_col] != ' ':
-        print("Informe uma jogada válida.")
-        continue
-    tab[user_input_row][user_input_col] = 'X' if var_control_player % 2 == 0 else "O"
-    var_control_player += 1
-"""
-    
-    
