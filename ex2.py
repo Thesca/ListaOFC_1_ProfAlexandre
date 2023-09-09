@@ -29,18 +29,6 @@ def vence_linha(row):
 
 def printa_tela():
     os.system("cls")
-    """
-    print("    0   1   2   3")
-    print("0:  " +tab[0][0] + " | " + tab[0][1] + " | " + tab[0][2] + " | " + tab[0][3])
-    print("   ----------------")
-    print("1:  " +tab[1][0] + " | " + tab[1][1] + " | " + tab[1][2] + " | " + tab[1][3])
-    print("   ----------------")
-    print("2:  " +tab[2][0] + " | " + tab[2][1] + " | " + tab[2][2] + " | " + tab[2][3])
-    print("   ----------------")
-    print("3:  " +tab[3][0] + " | " + tab[3][1] + " | " + tab[3][2] + " | " + tab[3][3])
-    print()
-    print()
-    """
     out = '    '
     for i in range(ordem):
         out += (f"{i}   ")
