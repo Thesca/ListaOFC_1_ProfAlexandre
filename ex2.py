@@ -1,33 +1,37 @@
 import os
-#coluna
+#Verifica a coluna recebida se há ganhadores
 def vence_coluna(col):
     if var_control_player % 2 == 0:
         return all([tab[x][col] == 'X' for x in range (len(tab))])
     else:
         return all([tab[x][col] == 'O' for x in range (len(tab))])
 
-#diagonal principal
+#Verifica diagonal principal
 def vence_diag_prin():
     if var_control_player % 2 == 0:
         return all([tab[i][i] == 'X' for i in range(len(tab))])
     else:
         return all([tab[i][i] == 'O' for i in range(len(tab))])
 
-#diagonal secundaria
+#Verifica diagonal secundaria
 def vence_diag_sec():
     if var_control_player % 2 == 0:
         return all([tab[i][len(tab) - i - 1] == 'X' for i in range(len(tab))])
     else:
         return all([tab[i][len(tab) - i - 1] == 'O' for i in range(len(tab))])
     
-#linha
+#Verifica a linha recebida se há ganhadores
 def vence_linha(row):
     if var_control_player % 2 == 0:
         return all([x == 'X' for x in row])
     else:
         return all([x == 'O' for x in row])
 
+
 def printa_tela():
+    """
+    Função genérica para printar o tabuleiro baseado na ordem da matriz
+    """
     os.system("cls")
     out = '    '
     for i in range(ordem):
@@ -53,8 +57,11 @@ def printa_tela():
     out += ("\n\n")
     print(out)
     
-var_control_player = 0
+var_control_player = 0 #Variavel de controle, mesma do exercicio 1
 def ambiente():
+    """
+    Função para definir a ordem do tabuleiro e setar variaveis que serão usadas pelo printa_matriz e para contruir o tabuleiro
+    """
     global ordem
     global tab
     ordem = int(input("Qual a ordem do jogo da velha? "))
@@ -62,6 +69,9 @@ def ambiente():
 
 max_jogadas = 0
 def game():
+    """
+    Função principal onde toda a lógica é feita
+    """
     global var_control_player
     global tab
     while max_jogadas != 16:
@@ -86,5 +96,5 @@ def game():
             exit()
         var_control_player += 1
     print("Deu velha!")
-ambiente()
-game()
+ambiente() #Chamada para definir a ordem e contruir o tabuleiro
+game() #Chamada para começar o jogo
